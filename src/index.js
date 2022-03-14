@@ -33,11 +33,8 @@ app.use(notFoundHandler);
 // Errors middlewares
 app.use(logErrors);
 app.use(wrapErrors);
-app.use(errorHandler);
-
-
-
+app.use(errorHandler)
 
 app.listen(config.port, () => {
     console.log(`Listening on: http://localhost:${config.port}`);
-})
+});
