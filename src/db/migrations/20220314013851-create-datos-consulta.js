@@ -1,6 +1,6 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
-'use strict';
+('use strict');
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('datosConsulta', {
@@ -17,24 +17,24 @@ module.exports = {
                 type: Sequelize.DATE
             },
             idDoctor: {
-                allowNull: false,
                 type: Sequelize.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'medicos',
                     key: 'id'
                 }
             },
             idPatient: {
-                allowNull: false,
                 type: Sequelize.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'pacientes',
                     key: 'id'
                 }
             },
             idReason: {
-                allowNull: false,
                 type: Sequelize.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'motivoConsulta',
                     key: 'id'

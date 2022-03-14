@@ -15,8 +15,8 @@ module.exports = {
                 type: Sequelize.STRING
             },
             idTest: {
-                allowNull: false,
                 type: Sequelize.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'datosConsulta',
                     key: 'id'

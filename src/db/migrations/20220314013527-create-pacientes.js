@@ -1,3 +1,4 @@
+// 4
 'use strict';
 module.exports = {
     async up(queryInterface, Sequelize) {
@@ -38,8 +39,8 @@ module.exports = {
                 type: Sequelize.STRING
             },
             idBlood: {
-                allowNull: false,
                 type: Sequelize.INTEGER,
+                allowNull: false,
                 references: {
                     model: 'tipoSangre',
                     key: 'id'
