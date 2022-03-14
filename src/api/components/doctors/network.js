@@ -4,7 +4,6 @@ const { createUserSchema, userIdSchema, updateUserSchema } = require('../../../u
 const validationHandler = require('../../../utils/middlewares/validationHandler');
 
 router.get('/', (req, res, next) => {
-    
     try {
         res.status(200).json({
             Message: "Hello!"
@@ -17,8 +16,8 @@ router.get('/', (req, res, next) => {
 //  Example of req.body validation
 router.post('/', validationHandler(createUserSchema), (req, res, next) => {
     try {
-        res.status(200).json({
-            Message: "Ok"
+        res.status(201).json({
+            Message: "Created"
         })
     } catch (error) {
         next(error);

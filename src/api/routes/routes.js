@@ -1,7 +1,7 @@
-const userRoutes = require('../components/users/network');
+const doctorRoutes = require('../components/doctors/network');
 
 const routes = (app) => {
-    app.use('/api/user', userRoutes);
+    app.use('/api/doctor', doctorRoutes);
 }
 
 module.exports = routes;
