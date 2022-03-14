@@ -14,10 +14,14 @@ const doctorCreation = async (data) => {
     const objUser = await store.doctorByUser(data.username);
     const objCedula = await store.doctorByLicense(data.license);
 
-    if (objUser.length >= 1) {
+    if (objUser != null) {
+        // const user = JSON.stringify(Object.values(JSON.parse(JSON.stringify(objUser))));
+        // console.log(user);
         throw boom.conflict('User already exist');
     } else {
-        if (objCedula.length >= 1) {
+        if (objCedula != null) {
+            // const cedula = JSON.stringify(Object.values(JSON.parse(JSON.stringify(objCedula))));
+            // console.log(cedula);
             throw boom.conflict('License already exist');
         } else {
             data.password = hashedPassword;
