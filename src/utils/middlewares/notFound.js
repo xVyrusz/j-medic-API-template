@@ -6,6 +6,6 @@ const notFoundHandler = (req, res) => {
     } = boom.notFound();
 
     res.status(statusCode).json(payload);
-}
+};
 
 module.exports = notFoundHandler;
