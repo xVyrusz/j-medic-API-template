@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const {
     createUserSchema,
-    userIdSchema,
-    updateUserSchema
-} = require('../../../utils/validations/schemas/userExample'); // eslint-disable-line
+    updateDoctorSchema,
+    loginSchema,
+    doctorIdSchema
+} = require('../../../utils/validations/schemas/doctors.schema'); // eslint-disable-line
 const validationHandler = require('../../../utils/middlewares/validationHandler');
 
 router.get('/', (req, res, next) => {
