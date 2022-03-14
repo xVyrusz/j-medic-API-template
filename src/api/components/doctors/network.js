@@ -50,7 +50,14 @@ router.post('/add', validationHandler(createDoctorSchema), async (req, res, next
         const doctor = await controller.doctorCreation(newDoctor);
         res.status(201).json({
             Message: 'Created',
-            Doctor: doctor
+            Doctor: {
+                "id": doctor.id,
+                "firstName": doctor.firstName,
+                "lastName": doctor.lastName,
+                "username": doctor.username,
+                "license": doctor.license,
+                "phone": doctor.phone
+            }
         });
     } catch (error) {
         next(error);
@@ -62,9 +69,17 @@ router.get('/list/:id', validationHandler({ id: doctorIdSchema }, 'params'), asy
         const { id } = req.params;
 
         try {
-                //const doctor = await controller.getDoctorById(id);
+                const doctor = await controller.getDoctorById(id);
             res.json({
-                id: 'calando',
+                Message: 'Found',
+                Doctor: {
+                    "id": doctor.id,
+                    "firstName": doctor.firstName,
+                    "lastName": doctor.lastName,
+                    "username": doctor.username,
+                    "license": doctor.license,
+                    "phone": doctor.phone
+                }
             });
         } catch (error) {
             next(error);
