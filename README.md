@@ -6,7 +6,7 @@
 
 # getting started 🚀
 
-# Express-MongoAPI-BoilerTemplate
+# Express-Sequelize-BoilerTemplate
 This is the basic base API template.
 
 ## Packages that are used 📦
@@ -17,7 +17,9 @@ This is the basic base API template.
 - helmet
 - joi
 - jsonwebtoken
-- mongoose
+- sequelize
+- mysql2
+- bcryptjs
 
 ### Dev Dependencies 👩🏾‍💻
 - eslint
@@ -28,6 +30,7 @@ This is the basic base API template.
 - lint-staged
 - eslint-plugin-prettier
 - eslint-config-prettier
+- sequelize-cli
 
 ## Instalation 🐝
 ```bash
@@ -45,11 +48,11 @@ npm start
 ```
 
 ## Requirements 📃
-- Mongodb
+- MySQL
 - Node 12+
 
 # What does it include? 🧨✨🎉
-It ncludes the most basic API project using node + express + mongodb. Things like validation middleware, an error handler, automatic db connection, JWT base authentication etc.
+It ncludes the most basic API project using node + express + mysql. Things like validation middleware, an error handler, automatic db connection, JWT base authentication etc.
 
 ## Contributing ✒️
 Pull requests are welcome!. And if you have an idea for a feature and dont have time to do this, feel free to open a issue!
