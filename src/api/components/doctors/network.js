@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const {
-    createUserSchema,
+    createDoctorSchema,
     updateDoctorSchema,
     loginSchema,
     doctorIdSchema
 } = require('../../../utils/validations/schemas/doctors.schema'); // eslint-disable-line
 const validationHandler = require('../../../utils/middlewares/validationHandler');
+const controller = require('./controller');
 
 router.get('/', (req, res, next) => {
     try {
@@ -18,15 +19,57 @@ router.get('/', (req, res, next) => {
     }
 });
 
-//  Example of req.body validation
-router.post('/', validationHandler(createUserSchema), (req, res, next) => {
+router.get('/add', (req, res, next) => {
     try {
-        res.status(201).json({
-            Message: 'Created'
+        res.status(200).json({
+            Message: 'Hello!'
         });
     } catch (error) {
         next(error);
     }
 });
+
+router.post('/add', validationHandler(createDoctorSchema), async (req, res, next) => {
+    const {
+        firstName,
+        lastName,
+        username,
+        password,
+        license,
+        phone
+    } = req.body;
+    const newDoctor = {
+        firstName,
+        lastName,
+        username,
+        password,
+        license,
+        phone
+    };
+    try {
+        const doctor = await controller.doctorCreation(newDoctor);
+        res.status(201).json({
+            Message: 'Created',
+            Doctor: doctor
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+
+router.get('/list/:id', validationHandler({ id: doctorIdSchema }, 'params'), async (req, res, next) => {
+        const { id } = req.params;
+
+        try {
+                //const doctor = await controller.getDoctorById(id);
+            res.json({
+                id: 'calando',
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+);
 
 module.exports = router;

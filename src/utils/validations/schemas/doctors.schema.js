@@ -12,9 +12,9 @@ const baseValidString = joi.string().min(3).max(100);
 // turno
 
 const doctorIdSchema = joi.number();
-const nombreSchema = baseValidString;
-const apellidoSchema = baseValidString;
-const usuarioSchema = baseValidString;
+const firstNameSchema = baseValidString;
+const lastNameSchema = baseValidString;
+const usernameSchema = baseValidString;
 const passwordSchema = joi
     .string()
     .regex(
@@ -28,38 +28,33 @@ const cedulaSchema = joi
     .length(8)
     .regex(/^[0-9]+$/)
     .message('Cedula Invalida.');
-const telefonoSchema = joi
+const phoneSchema = joi
     .string()
     .min(8)
     .max(20)
     .regex(/^\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/)
     .message('Numero de telefono invalido.');
-const turnoSchema = joi.number().valid(1, 2, 3);
 
 const createDoctorSchema = {
-    nombre: nombreSchema.required(),
-    apellidoP: apellidoSchema.required(),
-    apellidoM: apellidoSchema.required(),
-    usuario: usuarioSchema.required(),
+    firstName: firstNameSchema.required(),
+    lastName: lastNameSchema.required(),
+    username: usernameSchema.required(),
     password: passwordSchema.required(),
-    cedula: cedulaSchema.required(),
-    telefono: telefonoSchema.required(),
-    turno: turnoSchema.required()
+    license: cedulaSchema.required(),
+    phone: phoneSchema.required(),
 };
 
 const updateDoctorSchema = {
-    nombre: nombreSchema,
-    apellidoP: apellidoSchema,
-    apellidoM: apellidoSchema,
-    usuario: usuarioSchema,
+    firstName: firstNameSchema,
+    lastName: lastNameSchema,
+    username: usernameSchema,
     password: passwordSchema,
-    cedula: cedulaSchema,
-    telefono: telefonoSchema,
-    turno: turnoSchema
+    license: cedulaSchema,
+    phone: phoneSchema,
 };
 
 const loginSchema = {
-    usuario: usuarioSchema.required(),
+    usuario: usernameSchema.required(),
     password: passwordSchema.required()
 };
 

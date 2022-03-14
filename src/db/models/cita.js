@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             sequelize,
-            modelName: 'cita'
+            modelName: 'cita',
+            timestamps: false
         }
     );
     return cita;
