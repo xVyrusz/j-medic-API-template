@@ -2,20 +2,25 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('consulta', {
-            id: {
-                allowNull: false,
-                autoIncrement: true,
-                primaryKey: true,
-                type: Sequelize.INTEGER
-            },
             testMade: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             diagnosis: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             tratamiento: {
+                allowNull: false,
                 type: Sequelize.STRING
+            },
+            idTest: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'datosConsulta',
+                    key: 'id'
+                }
             }
         });
     },

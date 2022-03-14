@@ -6,24 +6,33 @@ module.exports = {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
+                unique: true,
                 type: Sequelize.INTEGER
             },
             firstName: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             lastName: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             username: {
+                allowNull: false,
+                unique: true,
                 type: Sequelize.STRING
             },
             password: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             license: {
+                allowNull: false,
+                unique: true,
                 type: Sequelize.STRING
             },
             phone: {
+                allowNull: false,
                 type: Sequelize.STRING
             }
         });

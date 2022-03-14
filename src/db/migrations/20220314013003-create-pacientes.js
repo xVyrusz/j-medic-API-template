@@ -6,28 +6,44 @@ module.exports = {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
+                unique: true,
                 type: Sequelize.INTEGER
             },
             firstName: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             lastName: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             gender: {
+                allowNull: false,
                 type: Sequelize.STRING
             },
             weight: {
+                allowNull: false,
                 type: Sequelize.FLOAT
             },
             height: {
+                allowNull: false,
                 type: Sequelize.FLOAT
             },
             age: {
+                allowNull: false,
                 type: Sequelize.INTEGER
             },
             phone: {
+                allowNull: false,
                 type: Sequelize.STRING
+            },
+            idBlood: {
+                allowNull: false,
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'tipoSangre',
+                    key: 'id'
+                }
             }
         });
     },

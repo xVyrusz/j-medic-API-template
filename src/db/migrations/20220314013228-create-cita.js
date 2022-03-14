@@ -6,10 +6,21 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        unique: true,
         type: Sequelize.INTEGER
       },
       date: {
+        allowNull: false,
+        unique: true,
         type: Sequelize.DATE
+      },
+      idPatient: {
+          allowNull: false,
+          type: Sequelize.INTEGER,
+          references: {
+              model: 'pacientes',
+              key: 'id'
+          }
       }
     });
   },
