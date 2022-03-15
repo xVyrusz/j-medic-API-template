@@ -64,6 +64,51 @@ router.post('/add', validationHandler(createDoctorSchema), async (req, res, next
     }
 });
 
+router.get('/update', (req, res, next) => {
+    try {
+        res.status(200).json({
+            Message: 'Hello!'
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.put('/update', validationHandler(updateDoctorSchema), async (req, res, next) => {
+    const {
+        firstName,
+        lastName,
+        username,
+        password,
+        license,
+        phone
+    } = req.body;
+    const updateDoctor = {
+        firstName,
+        lastName,
+        username,
+        password,
+        license,
+        phone
+    };
+    try {
+        const doctor = await controller.doctorUpdate(updateDoctor);
+        res.status(201).json({
+            Message: 'Updated',
+            Doctor: {
+                "id": doctor.id,
+                "firstName": doctor.firstName,
+                "lastName": doctor.lastName,
+                "username": doctor.username,
+                "license": doctor.license,
+                "phone": doctor.phone
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
 
 router.get('/list/:id', validationHandler({ id: doctorIdSchema }, 'params'), async (req, res, next) => {
         const { id } = req.params;

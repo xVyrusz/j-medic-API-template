@@ -11,6 +11,17 @@ const createDoctor = async (data) => {
     });
 };
 
+const updateDoctor = async (data) => {
+    return await Medicos.update({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        username: data.username,
+        password: data.password,
+        license: data.license,
+        phone: data.phone
+    });
+};
+
 const getDoctorById = async (id) => {
     return await Medicos.findOne({
         where: {
@@ -37,6 +48,7 @@ const getDoctorCedula = async (license) => {
 
 module.exports = {
     doctorCreate: createDoctor,
+    doctorUpdate: updateDoctor,
     doctorById: getDoctorById,
     doctorByUser: getDoctorUser,
     doctorByLicense: getDoctorCedula

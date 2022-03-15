@@ -30,11 +30,14 @@ const doctorCreation = async (data) => {
     }
 };
 
+const doctorUpdate = async (data) => {};
+
 const getDoctorById = async (id) => {
     return store.doctorById(id);
 };
 
 module.exports = {
     doctorCreation,
+    doctorUpdate,
     getDoctorById
 };
