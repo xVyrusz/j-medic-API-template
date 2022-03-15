@@ -54,7 +54,7 @@ const updateDoctorSchema = {
 };
 
 const loginSchema = {
-    usuario: usernameSchema.required(),
+    username: usernameSchema.required(),
     password: passwordSchema.required()
 };
 
