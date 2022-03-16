@@ -3,33 +3,25 @@ const router = express.Router();
 const {
     createDoctorSchema,
     updateDoctorSchema,
-    loginSchema,
     doctorIdSchema
 } = require('../../../utils/validations/schemas/doctors.schema'); // eslint-disable-line
 const validationHandler = require('../../../utils/middlewares/validationHandler');
 const controller = require('./controller');
+const checkJwt = require('../../../utils/middlewares/auth/checkJwt');
+const checkIdRole = require('../../../utils/middlewares/auth/checkId');
 
-router.get('/', (req, res, next) => {
-    try {
-        res.status(200).json({
-            Message: 'Hello!'
-        });
-    } catch (error) {
-        next(error);
-    }
-});
+// router.get('/', (req, res, next) => {
+//     try {
+//         res.status(200).json({
+//             Message: 'Hello!'
+//         });
+//     } catch (error) {
+//         next(error);
+//     }
+// });
 
-router.get('/add', (req, res, next) => {
-    try {
-        res.status(200).json({
-            Message: 'Hello!'
-        });
-    } catch (error) {
-        next(error);
-    }
-});
 
-router.post('/add', validationHandler(createDoctorSchema), async (req, res, next) => {
+router.post('/add', checkJwt, checkIdRole, validationHandler(createDoctorSchema), async (req, res, next) => {
     const {
         firstName,
         lastName,
@@ -64,7 +56,7 @@ router.post('/add', validationHandler(createDoctorSchema), async (req, res, next
     }
 });
 
-router.get('/update', (req, res, next) => {
+router.get('/update', checkJwt, checkIdRole, (req, res, next) => {
     try {
         res.status(200).json({
             Message: 'Hello!'
@@ -74,7 +66,7 @@ router.get('/update', (req, res, next) => {
     }
 });
 
-router.put('/update', validationHandler(updateDoctorSchema), async (req, res, next) => {
+router.put('/update', checkJwt, checkIdRole, validationHandler(updateDoctorSchema), async (req, res, next) => {
     const {
         firstName,
         lastName,
@@ -110,7 +102,7 @@ router.put('/update', validationHandler(updateDoctorSchema), async (req, res, ne
 });
 
 
-router.get('/list/:id', validationHandler({ id: doctorIdSchema }, 'params'), async (req, res, next) => {
+router.get('/list/:id', checkJwt, validationHandler({ id: doctorIdSchema }, 'params'), async (req, res, next) => {
         const { id } = req.params;
 
         try {

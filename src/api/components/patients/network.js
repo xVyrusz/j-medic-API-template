@@ -7,8 +7,9 @@ const {
 } = require('../../../utils/validations/schemas/patients.schema'); // eslint-disable-line
 const validationHandler = require('../../../utils/middlewares/validationHandler');
 const controller = require('./controller');
+const checkJwt = require('../../../utils/middlewares/auth/checkJwt');
 
-router.get('/', (req, res, next) => {
+router.get('/', checkJwt, (req, res, next) => {
     try {
         res.status(200).json({
             Message: 'Hello!'
@@ -18,7 +19,7 @@ router.get('/', (req, res, next) => {
     }
 });
 
-router.get('/add', (req, res, next) => {
+router.get('/add', checkJwt, (req, res, next) => {
     try {
         res.status(200).json({
             Message: 'Hello!'
@@ -28,7 +29,7 @@ router.get('/add', (req, res, next) => {
     }
 });
 
-router.post('/add', validationHandler(createPatientSchema), async (req, res, next) => {
+router.post('/add', checkJwt, validationHandler(createPatientSchema), async (req, res, next) => {
     const {
         firstName,
         lastName,
@@ -70,7 +71,7 @@ router.post('/add', validationHandler(createPatientSchema), async (req, res, nex
     }
 });
 
-router.get('/update', (req, res, next) => {
+router.get('/update', checkJwt, (req, res, next) => {
     try {
         res.status(200).json({
             Message: 'Hello!'
@@ -80,7 +81,7 @@ router.get('/update', (req, res, next) => {
     }
 });
 
-router.put('/update', validationHandler(updatePatientSchema), async (req, res, next) => {
+router.put('/update', checkJwt, validationHandler(updatePatientSchema), async (req, res, next) => {
     const {
         firstName,
         lastName,
@@ -122,7 +123,7 @@ router.put('/update', validationHandler(updatePatientSchema), async (req, res, n
     }
 });
 
-router.get('/list/:id', validationHandler({ id: patientIdSchema }, 'params'), async (req, res, next) => {
+router.get('/list/:id', checkJwt, validationHandler({ id: patientIdSchema }, 'params'), async (req, res, next) => {
         const { id } = req.params;
         try {
                 const patient = await controller.getPatientById(id);
