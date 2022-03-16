@@ -30,7 +30,9 @@ const doctorCreation = async (data) => {
     }
 };
 
-const doctorUpdate = async (data) => {};
+const doctorUpdate = async (data) => {
+    return await store.doctorUpdate(data);
+};
 
 const getDoctorById = async (id) => {
     return store.doctorById(id);

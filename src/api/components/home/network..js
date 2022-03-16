@@ -37,10 +37,12 @@ router.post('/login', validationHandler(loginSchema) ,async (req, res, next) => 
         };
         const doctorInfo = await controller.getDoctorUser(doctor);
         const jwtCreated = createJwt.createToken(doctorInfo);
+        const refreshJwtCreated = createJwt.refreshToken(doctorInfo);
 
         res.json({
             Message: 'Logging Success',
-            Jwt: jwtCreated
+            accessToken: jwtCreated,
+            refreshToken: refreshJwtCreated
         });
     } catch (error) {
         next(error);

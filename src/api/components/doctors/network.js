@@ -68,6 +68,7 @@ router.get('/update', checkJwt, checkIdRole, (req, res, next) => {
 
 router.put('/update', checkJwt, checkIdRole, validationHandler(updateDoctorSchema), async (req, res, next) => {
     const {
+        id,
         firstName,
         lastName,
         username,
@@ -76,6 +77,7 @@ router.put('/update', checkJwt, checkIdRole, validationHandler(updateDoctorSchem
         phone
     } = req.body;
     const updateDoctor = {
+        id,
         firstName,
         lastName,
         username,

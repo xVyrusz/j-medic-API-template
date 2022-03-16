@@ -83,6 +83,7 @@ router.get('/update', checkJwt, (req, res, next) => {
 
 router.put('/update', checkJwt, validationHandler(updatePatientSchema), async (req, res, next) => {
     const {
+        id,
         firstName,
         lastName,
         gender,
@@ -93,6 +94,7 @@ router.put('/update', checkJwt, validationHandler(updatePatientSchema), async (r
         idBlood
     } = req.body;
     const newPatient = {
+        id,
         firstName,
         lastName,
         gender,
@@ -103,7 +105,7 @@ router.put('/update', checkJwt, validationHandler(updatePatientSchema), async (r
         idBlood
     };
     try {
-        const patient = await controller.doctorUpdate(newPatient);
+        const patient = await controller.patientUpdate(newPatient);
         res.status(201).json({
             Message: 'Updated',
             Patient: {

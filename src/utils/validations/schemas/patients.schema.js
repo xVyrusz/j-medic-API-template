@@ -38,6 +38,7 @@ const createPatientSchema = {
 };
 
 const updatePatientSchema = {
+    id: patientIdSchema,
     firstName: firstNameSchema,
     lastName: lastNameSchema,
     gender: genderSchema,

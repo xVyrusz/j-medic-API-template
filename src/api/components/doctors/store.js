@@ -12,14 +12,21 @@ const createDoctor = async (data) => {
 };
 
 const updateDoctor = async (data) => {
-    return await Medicos.update({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        username: data.username,
-        password: data.password,
-        license: data.license,
-        phone: data.phone
-    });
+    return await Medicos.update(
+        {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            username: data.username,
+            password: data.password,
+            license: data.license,
+            phone: data.phone
+        },
+        {
+            where: { id: data.id },
+            returning: true,
+            plain: true
+        }
+    );
 };
 
 const getDoctorById = async (id) => {
