@@ -1,5 +1,4 @@
 const store = require('./store');
-const boom = require('@hapi/boom');
 
 const patientCreation = async (data) => {
     return await store.patientCreate(data);

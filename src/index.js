@@ -12,11 +12,21 @@ const notFoundHandler = require('./utils/middlewares/notFound');
 
 //  Server configs
 const { config } = require('./config/index');
+const whitelist = ['http://localhost:3000'];
+const options = {
+    origin: (origin, callback) => {
+        if (whitelist.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Access Denied'));
+        }
+    }
+};
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Middlewares
-app.use(cors());
+app.use(cors(options));
 app.use(helmet());
 if (config.dev) {
     const morgan = require('morgan');
