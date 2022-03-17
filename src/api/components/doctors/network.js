@@ -10,16 +10,15 @@ const controller = require('./controller');
 const checkJwt = require('../../../utils/middlewares/auth/checkJwt');
 const checkIdRole = require('../../../utils/middlewares/auth/checkId');
 
-// router.get('/', (req, res, next) => {
-//     try {
-//         res.status(200).json({
-//             Message: 'Hello!'
-//         });
-//     } catch (error) {
-//         next(error);
-//     }
-// });
-
+router.get('/', checkJwt, (req, res, next) => {
+    try {
+        res.status(200).json({
+            Message: 'Hello!'
+        });
+    } catch (error) {
+        next(error);
+    }
+});
 
 router.post('/add', checkJwt, checkIdRole, validationHandler(createDoctorSchema), async (req, res, next) => {
     const {
@@ -50,16 +49,6 @@ router.post('/add', checkJwt, checkIdRole, validationHandler(createDoctorSchema)
                 "license": doctor.license,
                 "phone": doctor.phone
             }
-        });
-    } catch (error) {
-        next(error);
-    }
-});
-
-router.get('/update', checkJwt, checkIdRole, (req, res, next) => {
-    try {
-        res.status(200).json({
-            Message: 'Hello!'
         });
     } catch (error) {
         next(error);

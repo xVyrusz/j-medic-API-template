@@ -33,7 +33,7 @@ const phoneSchema = joi
     .min(8)
     .max(20)
     .regex(/^\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/)
-    .message('Numero de telefono invalido.');
+    .message('Invalid phone number.');
 
 const createDoctorSchema = {
     firstName: firstNameSchema.required(),
