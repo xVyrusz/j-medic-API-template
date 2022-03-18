@@ -1,35 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const {
-    createConsultSchema
+    createConsultSchema,
+    createConsultDataSchema
 } = require('../../../utils/validations/schemas/doctors.schema'); // eslint-disable-line
 const validationHandler = require('../../../utils/middlewares/validationHandler');
 const controller = require('./controller');
 const checkJwt = require('../../../utils/middlewares/auth/checkJwt');
 
-router.post('/consultData/add', checkJwt, validationHandler(createConsultSchema), async (req, res, next) => {
+router.post('/consultData/add', checkJwt, validationHandler(createConsultDataSchema), async (req, res, next) => {
     const {
-        testMade,
-        diagnosis,
-        tratamiento,
-        idTest
+        dateVisit,
+        idDoctor,
+        idPatient,
+        idReason
     } = req.body;
-    const newMeet = {
-        testMade,
-        diagnosis,
-        tratamiento,
-        idTest
+    const newConsultData= {
+        dateVisit,
+        idDoctor,
+        idPatient,
+        idReason
     };
 
     try {
-            const meet = await controller.getDoctorById(newMeet);
+            const consultData = await controller.consultCreationData(newConsultData);
         res.json({
             Message: 'Create',
-            Meet: {
-                "testMade": meet.testMade,
-                "diagnosis": meet.diagnosis,
-                "tratamiento": meet.tratamiento,
-                "idTest": meet.idTest
+            ConsultData: {
+                "testMade": consultData.testMade,
+                "diagnosis": consultData.diagnosis,
+                "tratamiento": consultData.tratamiento,
+                "idTest": consultData.idTest
             }
         });
     } catch (error) {
@@ -38,14 +39,14 @@ router.post('/consultData/add', checkJwt, validationHandler(createConsultSchema)
 }
 );
 
-router.post('/consult/add', checkJwt, validationHandler(createConsultSchema), async (req, res, next) => {
+router.post('/add', checkJwt, validationHandler(createConsultSchema), async (req, res, next) => {
     const {
         testMade,
         diagnosis,
         tratamiento,
         idTest
     } = req.body;
-    const newMeet = {
+    const newConsult = {
         testMade,
         diagnosis,
         tratamiento,
@@ -53,14 +54,14 @@ router.post('/consult/add', checkJwt, validationHandler(createConsultSchema), as
     };
 
     try {
-            const meet = await controller.getDoctorById(newMeet);
+            const consult = await controller.consultCreation(newConsult);
         res.json({
             Message: 'Create',
-            Meet: {
-                "testMade": meet.testMade,
-                "diagnosis": meet.diagnosis,
-                "tratamiento": meet.tratamiento,
-                "idTest": meet.idTest
+            Consult: {
+                "testMade": consult.testMade,
+                "diagnosis": consult.diagnosis,
+                "tratamiento": consult.tratamiento,
+                "idTest": consult.idTest
             }
         });
     } catch (error) {
